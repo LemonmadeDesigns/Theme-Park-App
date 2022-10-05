@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Grade CRUD App</title>
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <!-- jQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+    <!-- CUSTOM STYLES -->
+    <link rel="stylesheet" href="css/main.css">
+
+  </head>
+
+  <body>
+    <div>
+      <div class="container">
+
+        <div class="col-md-12">
+
+          <!-- GIVES A NICE BORDER AROUND APPLICATION -->
+          <div class="card card-body">
+
+            <!-- FORM WRAPPER & BUTTON -->
+            <button class="btn btn-sm btn-primary" id="add-class"> Add Class </button>
+
+            <!-- FORM THAT WILL BE HIDDEN UPON INITIAL DISPLAY -->
+            <div class="form-wrapper hidden">
+              <label for="">Name</label>
+              <select id="class-name" class="form-control">
+                <option value="">Please Select</option>
+                <option value="Check Point Projec"> Check Point Project </option>
+                <option value="Exit Ticket"> Exit Ticket </option>
+                <option value="Capstone Project"> Capstone Project </option>
+              </select>
+
+              <label for="">Exam</label>
+              <input type="text" class="form-control" id="class-exam" placeholder="Exit Ticket, Check Point, Capstone">
+              <label for="">Results</label>
+              <input type="number" class="form-control" id="class-result" placeholder="93">
+              
+              <!-- BUTTON TO ADD ROW TO TABLE -->
+              <div id="add-to-table">
+                <button class="btn btn-sm btn-info" id="create-class"> Add To Table </button>
+              </div>
+              
+            </div>
+
+            <!-- TABLE DATA -->
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">NAME</th>
+                  <th scope="col">EXAM</th>
+                  <th scope="col">RESULTS</th>
+                </tr>
+              </thead>
+              <tbody id="class-table">
+              <%if (classes.length >0){ %>
+                        <% classes.forEach(function(row){ %>
+                        <tr id="<%= row._id %>-container%>">
+                          <td><%= row.name %></td>
+                          <td><%= row.exam %></td>
+                          <td data-testid="<%= row.result %>" id="result-<%= row._id %>" class="result"><%= row.result %></td>
+                          <td>
+                             <button class="btn btn-sm btn-danger delete-button"
+                               data-testid='delete-<%= row._id%>'
+                               id="delete-<%= row._id%>"> Delete
+                             </button>
+
+                             <button class="btn btn-sm btn-info save-button"
+                               disabled
+                               data-testid="save-<%= row._id%>"
+                               id="save-<%= row._id%>"> Save
+                             </button>
+
+                             <button class="btn btn-sm btn-danger hidden cancel-button"
+                               data-testid="cancel-<%= row._id%>"
+                               id="cancel-<%= row._id%>"> Cancel
+                             </button>
+
+                             <button class="btn btn-sm btn-primary hidden confirm-button"
+                               data-testid="confirm-<%= row._id%>"
+                               id="confirm-<%= row._id%>"> Confirm
+                             </button>
+                           </td>
+                        </tr>
+                        <% })}else{ %>
+                          <tr>
+                              <td colspan="6">No Classes Found</td>
+                            </tr>
+                          <% } %>
+                <!-- BODY OF TABLE THAT IS BEING CALLED FROM JAVASCRIPT -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>

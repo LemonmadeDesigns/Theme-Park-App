@@ -1,0 +1,67 @@
+html, body { height: 100%;  width: 100%; }
+
+.container { padding-top: 1em; height: 100%; width: 100%; }
+
+.card-body {
+  border-radius: 0;
+}
+
+.form-wrapper {
+  padding: 1em;
+}
+
+.hidden {
+  display: none;
+}
+
+.btn, .form-control {
+  border-radius: 0;
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  background-color: rgb(32, 33, 36);
+  color: white;
+}
+
+th, td {
+  text-align: center;
+}
+
+th {
+  background-color: rgb(32, 33, 36);
+  padding: 0.5em 0;
+}
+
+tr:nth-child(odd) {
+  background-color: rgb(69, 69, 69);
+}
+
+td {
+  padding: 10px 0 11px;
+}
+
+td.flexCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.result {
+  max-width: 80px;
+  text-align: center;
+  padding: 0;
+  width: 80px;
+}
+
+#add-to-table {
+  display: flex;
+  justify-content: flex-end;
+}
+
+td > button.btn {
+  width: 75px;
+}
