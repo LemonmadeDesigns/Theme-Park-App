@@ -1,6 +1,18 @@
-html, body { height: 100%;  width: 100%; }
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
 
-.container { padding-top: 1em; height: 100%; width: 100%; }
+.container {
+  padding-top: 1em;
+  height: 100%;
+  width: 100%;
+}
+
+.titles {
+  text-align: center;
+}
 
 .card-body {
   border-radius: 0;
@@ -14,7 +26,8 @@ html, body { height: 100%;  width: 100%; }
   display: none;
 }
 
-.btn, .form-control {
+.btn,
+.form-control {
   border-radius: 0;
 }
 
@@ -28,7 +41,8 @@ table {
   color: white;
 }
 
-th, td {
+th,
+td {
   text-align: center;
 }
 
@@ -50,16 +64,30 @@ td.flexCenter {
   justify-content: center;
 }
 
-.result {
+.rating {
   max-width: 80px;
   text-align: center;
   padding: 0;
   width: 80px;
 }
 
+.alignMe_1 {
+  position: relative;
+  top: 18px;
+}
+
+.alignMe_2 {
+  position: relative;
+  bottom: 8px;
+}
+
 #add-to-table {
   display: flex;
   justify-content: flex-end;
+}
+
+#create-ride {
+  margin-left: 0.5em;
 }
 
 td > button.btn {

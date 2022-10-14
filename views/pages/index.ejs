@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta ride="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Grade CRUD App</title>
+    <title>RIDES CRUD APP</title>
 
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
@@ -25,30 +25,41 @@
 
         <div class="col-md-12">
 
+          <!-- NICE TITLE SPACE -->
+          <h1 class="titles">RATING THEME PARKS RIDES</h1>
+
           <!-- GIVES A NICE BORDER AROUND APPLICATION -->
           <div class="card card-body">
 
             <!-- FORM WRAPPER & BUTTON -->
-            <button class="btn btn-sm btn-primary" id="add-class"> Add Class </button>
+            <button class="btn btn-sm btn-primary" id="add-ride"> ADD RATING </button>
 
             <!-- FORM THAT WILL BE HIDDEN UPON INITIAL DISPLAY -->
             <div class="form-wrapper hidden">
-              <label for="">Name</label>
-              <select id="class-name" class="form-control">
+
+              <!-- LABEL COLUMN FOR THEME PARK -->
+              <label for=""> Theme Park </label>
+              <select id="park-name" class="form-control">
                 <option value="">Please Select</option>
-                <option value="Check Point Projec"> Check Point Project </option>
-                <option value="Exit Ticket"> Exit Ticket </option>
-                <option value="Capstone Project"> Capstone Project </option>
+                <option value="Disneyland"> Disneyland </option>
+                <option value="Knotts Berry Farm"> Knotts Berry Farm </option>
+                <option value="Magic Mountain"> Magic Mountain </option>
+                <option value="Universal Studios"> Universal Studios </option>
               </select>
 
-              <label for="">Exam</label>
-              <input type="text" class="form-control" id="class-exam" placeholder="Exit Ticket, Check Point, Capstone">
-              <label for="">Results</label>
-              <input type="number" class="form-control" id="class-result" placeholder="93">
+              <!-- LABEL COLUMN FOR RIDE -->
+              <label for=""> Ride </label>
+              <input type="text" class="form-control" id="ride-name" placeholder="Splash Mountain, It's a Small World, Log Ride">
+              
+              <!-- LABEL COLUMN FOR RATING -->
+              <label for=""> Ratings </label>
+              <input type="number" class="form-control" id="ride-rating" placeholder="1 through 10" min="1" max="10">
               
               <!-- BUTTON TO ADD ROW TO TABLE -->
               <div id="add-to-table">
-                <button class="btn btn-sm btn-info" id="create-class"> Add To Table </button>
+                <button class="btn btn-sm btn-danger cancel-button" id="cancel"> Cancel </button>
+                
+                <button class="btn btn-sm btn-info" id="create-ride"> Add To Table </button>
               </div>
               
             </div>
@@ -57,18 +68,25 @@
             <table>
               <thead>
                 <tr>
-                  <th scope="col">NAME</th>
-                  <th scope="col">EXAM</th>
-                  <th scope="col">RESULTS</th>
+                  <th scope="col"> THEME PARK</th>
+                  <th scope="col"> RIDE </th>
+                  <th scope="col"> RATING </th>
                 </tr>
               </thead>
-              <tbody id="class-table">
-              <%if (classes.length >0){ %>
-                        <% classes.forEach(function(row){ %>
+              <tbody id="ride-table">
+              <%if (rides.length > 0){ %>
+                        <% rides.forEach(function(row){ %>
                         <tr id="<%= row._id %>-container%>">
-                          <td><%= row.name %></td>
-                          <td><%= row.exam %></td>
-                          <td data-testid="<%= row.result %>" id="result-<%= row._id %>" class="result"><%= row.result %></td>
+                          <td><%= row.park %></td>
+                          <td><%= row.ride %></td>
+                          <td data-testid="<%= row.rating %>" id="rating-<%= row._id %>" class="rating">
+                            <span class="alignMe_1"><%= row.rating %></span> 
+                            <input style="visibility: hidden;" 
+                              type="number" id="edit-<%= row._id %>" 
+                              class="rating form-control alignMe_2"
+                              data-testid="edit-<%= row._id %>">
+                          </td>
+
                           <td>
                              <button class="btn btn-sm btn-danger delete-button"
                                data-testid='delete-<%= row._id%>'
@@ -94,7 +112,7 @@
                         </tr>
                         <% })}else{ %>
                           <tr>
-                              <td colspan="6">No Classes Found</td>
+                              <td colspan="6">No Rides Found</td>
                             </tr>
                           <% } %>
                 <!-- BODY OF TABLE THAT IS BEING CALLED FROM JAVASCRIPT -->
